@@ -1,5 +1,17 @@
 # PREDICCIÓN DEL ICV USANDO MACHINE LEARNING  
 
+## Breve descripción de resultados
+
+En este documento se busca predecir el icv mediante el uso de Machine Learning, para ello, se entrenaron 3 modelos de regresion con los datos *en frecuencia trimestral* y el desempeño de cada modelo se calculó usando el **Error Medio Absoluto**, el cual indica **En promedio, las predicciones del modelo difieren 'tantas' veces del valor real**
+
+A continuación se muestra la tabla con los resultados
+
+**Tabla 1**
+
+![](figuras_y_tablas/Tabla_1.PNG)
+
+De la tabla anterior, se concluye que el modelo con mejor desempeño es **RandomForest()**
+
 ## Exploración de datos
 
 #### Resampling y lectural del icv
@@ -51,6 +63,41 @@ El código de la función se muestra a continuación, en dónda básicamente se 
 
 ![](figuras_y_tablas/Figura_5.png)
 
+**Figura 5**
+
+Y a continuación se enseña cómo, usando la función **regression_imputer()** y un ciclo for, se reemplazan los valores nulos de las columnas **IPC** y **PIB**.
+
+![](figuras_y_tablas/Figura_6.png)
+
+**Figura 6** 
+
+## Dividir datos entre 'entrenamiento' y 'testeo'
+
+Esta etapa es crucial en el desarrollo de cualquier modelo predictivo de Machine Learning, ya que **NUNCA** debe ser usado el 100% de los datos disponibles, sino realizar una partición y utilizar una parte en entrenar el modelo y la otra en testearlo para evaluar éste cómo se comporta haciendo predicciones con datos que nunca ha **'visto'**.
+
+**NOTA:** **esta etapa es fundamental para garantizar la robustez estadística de cualquier modelo**
+
+A continuación, se procede a guardar en **x** la matriz de predictores de nuestros modelos y en **y** el vector de etiquetas o **'labels'** en este caso el icv, y a partir de estas dos variables, creamos las particiones de **'entrenamiento'** y **'testeo'** usando la función de sklearn **train_test_split()**.
+
+![](figuras_y_tablas/Figura_7.png)
+
+**Figura 7** 
+
+Como último paso antes de entrenar modelos, se deben imputar las columnas 'Exportaciones' e 'Importaciones'; en este caso usaremos los valores del promedio de la columna y la función **SimpleImputer()** de **sklearn**, ver siguiente figura.
+
+![](figuras_y_tablas/Figura_8.png)
+
+**Figura 8**
+
+
+## Entrenamiento y evaluación de modelos
+
+Se decidió, en esta fase, entrenar y evaluar el desempeño de tres modelos de regresión, los cuales son:
+* RandomForestRegressor()
+* LinearRegression()
+* DecisionTreeRegressor()
+
+El desempeño de cada modelo se calculó usando el **Error Medio Absoluto**, el cual indica **En promedio, las predicciones del modelo difieren 'tantas' veces del valor real**. A continuación se muestra un ciclo for, el cual itera sobre los 3 modelos y genera el error que cada uno produce evaluado en los datos de 'testeo'
 
 
 
