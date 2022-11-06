@@ -35,7 +35,7 @@ De la figura 3 se puede inferir que hay 4 columnas con valores nulos que deben s
 
 Usando el comando **sns.pairplot()** se genera el siguiente gráfico, el cual muestra en gráficos de disepersión, la correlación que existe entre todas las variables, inclusive el icv. 
 
-![](figuras_y_tablas/Figura_4)
+![](figuras_y_tablas/Figura_4.png)
 
 **Figura 4** 
 
