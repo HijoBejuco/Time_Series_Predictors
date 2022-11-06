@@ -99,7 +99,9 @@ Se decidió, en esta fase, entrenar y evaluar el desempeño de tres modelos de r
 
 El desempeño de cada modelo se calculó usando el **Error Medio Absoluto**, el cual indica **En promedio, las predicciones del modelo difieren 'tantas' veces del valor real**. A continuación se muestra un ciclo for, el cual itera sobre los 3 modelos y genera el error que cada uno produce evaluado en los datos de 'testeo'
 
+![](figuras_y_tablas/Figura_9.png)
 
+**Figura 9**
 
 
 
