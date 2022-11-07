@@ -10,7 +10,7 @@
 
 ![](figuras_y_tablas/Tabla_1.PNG)
 
-:green_book: De la tabla anterior, se concluye que el modelo con mejor desempeño es **RandomForest()**
+:green_book: De la tabla anterior, se concluye que el modelo con mejor desempeño es **RandomForest()**, ya que tiene el menor valor de error. 
 
 ## :minidisc: Exploración de datos :minidisc:
 
@@ -134,6 +134,11 @@ Inicialmente observamos que la serie de tiempo del índice de cartera vencida (i
 ![](figuras_y_tablas/Figura_11.png)
 
 **Figura 11**
+
+:green_book:Contrastando el valor predicho del icv con los valores reales, se encuentra poca diferencia, hecho que aumenta la credibilidad de los modelos acá entrenados; el artículo de **la república**, titulado **Estos son los bancos con mayores y menores índices de cartera vencida a julio de 2021** indica que para Julio del 2021 se tenía para Bancolombia un icv de 4,6%, valor similar al predicho por el modelo; pese a que sólo se tiene el valor de los primero 6 meses del icv para el 2021, es un estimativo significativo sobre la efectividad del modelo acá desarrollado. 
+
+**NOTA:exclamation:: la fuente del artículo de la república, se encuentra en el archivo de texto plano adjunto al proyecto**
+
 
 ### :books:Variables adicionales en la predicción del icv:label:
 
