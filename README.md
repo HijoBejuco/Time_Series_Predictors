@@ -1,16 +1,16 @@
-## :computer:PREDICCIÓN DEL ICV USANDO MACHINE LEARNING  
+## :computer:PREDICCIÓN DEL ICV USANDO MACHINE LEARNING:green_book:  
 
 ## :scroll:Breve descripción de resultados
 
-En este documento se busca predecir el icv mediante el uso de Machine Learning, para ello, se entrenaron 3 modelos de regresión con los datos *en frecuencia trimestral*, además, el desempeño de cada modelo se calculó usando el **Error Medio Absoluto**, el cual indica **En promedio, las predicciones del modelo difieren 'tantas' veces del valor real**
+:green_book: En este documento se busca predecir el icv mediante el uso de Machine Learning, para ello, se entrenaron 3 modelos de regresión con los datos *en frecuencia trimestral*, además, el desempeño de cada modelo se calculó usando el **Error Medio Absoluto**, el cual indica **En promedio, las predicciones del modelo difieren 'tantas' veces del valor real**
 
-A continuación se muestra la tabla con los resultados
+:green_book: A continuación se muestra la tabla con los resultados
 
 **Tabla 1**
 
 ![](figuras_y_tablas/Tabla_1.PNG)
 
-* De la tabla anterior, se concluye que el modelo con mejor desempeño es **RandomForest()**
+:green_book: De la tabla anterior, se concluye que el modelo con mejor desempeño es **RandomForest()**
 
 ## :minidisc: Exploración de datos :minidisc:
 
@@ -28,43 +28,43 @@ Inicialmente observamos que la serie de tiempo del índice de cartera vencida (i
 
 #### :book: Lectura y ajuste de variables 
 
-* A continuación se carga la base de datos de variables y se eliminan las 3 primeras filas y la última, esto con el fin de que puedan ser agrupadas correctamente con los datos del icv y formar un sólo dataframe y así explorar más fácil los datos. 
+:green_book: A continuación se carga la base de datos de variables y se eliminan las 3 primeras filas y la última, esto con el fin de que puedan ser agrupadas correctamente con los datos del icv y formar un sólo dataframe y así explorar más fácil los datos. 
 **El objetivo es predecir cual será el icv promedio de los próximos 3 meses usando predictores o variables de la fecha actual.**
 
 ![](figuras_y_tablas/Figura_2.PNG)
 
 **Figura 2**
 
-* Luego, se deben unir los datos del ICV con las variables en un solo dataframe, además de agregar una columna numérica incremental para posteriores análisis, también se usa el comando **info()** para conocer los tipos de datos de las columnas y presencia de valores nulos
+:green_book: Luego, se deben unir los datos del ICV con las variables en un solo dataframe, además de agregar una columna numérica incremental para posteriores análisis, también se usa el comando **info()** para conocer los tipos de datos de las columnas y presencia de valores nulos
 
 ![](figuras_y_tablas/Figura_3.PNG)
 
 **Figura 3**
 
-* De la figura 3 se puede inferir que hay 4 columnas con valores nulos que deben ser modificados posteriormente mediante imputación. 
+:green_book: De la figura 3 se puede inferir que hay 4 columnas con valores nulos que deben ser modificados posteriormente mediante imputación. 
 
 #### :bar_chart:Gráfico de correlaciones entre variables:chart_with_upwards_trend:
 
-*Usando el comando **sns.pairplot()** se genera el siguiente gráfico, el cual muestra en gráficos de disepersión, la correlación existente entre todas las variables, inclusive el icv. 
+:green_book: Usando el comando **sns.pairplot()** se genera el siguiente gráfico, el cual muestra en gráficos de disepersión, la correlación existente entre todas las variables, inclusive el icv. 
 
 ![](figuras_y_tablas/Figura_4.png)
 
 **Figura 4** 
 
-* De la figura 4 se observa que la variable **icv_cartera_total** tiene una correlación positiva con la variable **Desempleo**, :bangbang:**pero su correlación con las demás variables no es fuerte**:bangbang:, hecho que se evidencia más adelante en este proyecto cuando se analicen las **relaciones y coeficientes del modelo de regresión lineal**, el cual es uno de los varios modelos posteriormente entrenados. 
+:green_book: De la figura 4 se observa que la variable **icv_cartera_total** tiene una correlación positiva con la variable **Desempleo**, :bangbang:**pero su correlación con las demás variables no es fuerte**:bangbang:, hecho que se evidencia más adelante en este proyecto cuando se analicen las **relaciones y coeficientes del modelo de regresión lineal**, el cual es uno de los varios modelos posteriormente entrenados. 
 
 
 ## :memo:Imputación usando Regresión lineal:fountain_pen:
 
-* En la Figura 4 también se puede observar que las variables **PIB** e **IPC** tienen una alta correlación positiva con el tiempo (a medida que pasan los años, el valor del PIB e IPC aumenta); por esta fuerte correlación, se ha tomado la decisión de usar un modelo de Regresión Lineal para reemplazar los datos faltantes en estas dos columnas; para esto, se desarrolló la función **regression_imputer()** la cual hace el proceso de imputación automático. 
+:green_book: En la Figura 4 también se puede observar que las variables **PIB** e **IPC** tienen una alta correlación positiva con el tiempo (a medida que pasan los años, el valor del PIB e IPC aumenta); por esta fuerte correlación, se ha tomado la decisión de usar un modelo de Regresión Lineal para reemplazar los datos faltantes en estas dos columnas; para esto, se desarrolló la función **regression_imputer()** la cual hace el proceso de imputación automático. 
 
-* El código de la función se muestra a continuación, en dónda básicamente se entrena el modelo con los valores de la columna que no tengan valores nulos y luego de entrenado el modelo, éste se usa para predecir y sustituir los valores nulos por las predicciones realizadas por el modelo. 
+:green_book: El código de la función se muestra a continuación, en dónda básicamente se entrena el modelo con los valores de la columna que no tengan valores nulos y luego de entrenado el modelo, éste se usa para predecir y sustituir los valores nulos por las predicciones realizadas por el modelo. 
 
 ![](figuras_y_tablas/Figura_5.png)
 
 **Figura 5**
 
-* Y a continuación se enseña cómo, usando la función **regression_imputer()** y un ciclo for, se reemplazan los valores nulos de las columnas **IPC** y **PIB**.
+:green_book: Y a continuación se enseña cómo, usando la función **regression_imputer()** y un ciclo for, se reemplazan los valores nulos de las columnas **IPC** y **PIB**.
 
 ![](figuras_y_tablas/Figura_6.png)
 
@@ -141,10 +141,10 @@ Inicialmente observamos que la serie de tiempo del índice de cartera vencida (i
 
 :green_book:Por lo anterior, yo recomendaría inferir nuevas variables a partir de los valores pasados del icv, variables como: 
 
-    :fallen_leaf:media móvil simple
-    :fallen_leaf:media móvil exponencial
-    :fallen_leaf:indice anterior
-    :fallen_leaf:desviación estandard de la serie de tiempo 'n' periodos atrás
+    :herb: media móvil simple
+    :herb: media móvil exponencial
+    :herb: indice anterior
+    :herb: desviación estandard de la serie de tiempo 'n' periodos atrás
 
 :maple_leaf:**Se pueden inferir ilimitados posibles predictores en base a los mismos datos históricos**, un ejemplo de uso extensivo de la teoría de predicción de series de tiempo son los modelos de trading financiero, los cuales analizan series de precios y deciden en base a ello tomar alguna decisión en el mercado. 
 
