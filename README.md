@@ -142,8 +142,11 @@ Inicialmente observamos que la serie de tiempo del índice de cartera vencida (i
 :green_book:Por lo anterior, yo recomendaría inferir nuevas variables a partir de los valores pasados del icv, variables como: 
 
 :herb: media móvil simple
+
 :herb: media móvil exponencial
+
 :herb: indice anterior
+
 :herb: desviación estandard de la serie de tiempo 'n' periodos atrás
 
 :maple_leaf:**Se pueden inferir ilimitados posibles predictores en base a los mismos datos históricos**, un ejemplo de uso extensivo de la teoría de predicción de series de tiempo son los modelos de trading financiero, los cuales analizan series de precios y deciden en base a ello tomar alguna decisión en el mercado. 
