@@ -1,24 +1,26 @@
-## :computer:PREDICCIÓN DEL ICV USANDO MACHINE LEARNING:green_book:  
+## :computer:ICV TIME SERIES PREDICTION UNSING MACHINE LEARNING:green_book:  
 
-## :scroll:Breve descripción de resultados
 
-:green_book: En este documento se busca predecir el icv mediante el uso de Machine Learning, para ello, se entrenaron 3 modelos de regresión con los datos *en frecuencia trimestral*, además, el desempeño de cada modelo se calculó usando el **Error Medio Absoluto**, el cual indica **En promedio, las predicciones del modelo difieren 'tantas' veces del valor real**
+## :scroll:Short results description
 
-:green_book: A continuación se muestra la tabla con los resultados
+:green_book: The objective of this doccument is to predict the ICV timeseries using Machine Learning. To do this, 3 regression models were trained with data in *three-month frequency*, adittionally, the model performance were calculated using the **Mean Absolute Error**, which indicates **in average, how much the model predictions differ from real ones**
 
-**Tabla 1**
+:green_book: Following, is shown the table with results.
+
+
+**Table 1**
 
 ![](figuras_y_tablas/Tabla_1.PNG)
 
-:green_book: De la tabla anterior, se concluye que el modelo con mejor desempeño es **RandomForest()**, ya que tiene el menor valor de error. 
+:green_book: From the previous table, can be concluded that the model with best performance is **RandomForest()**, because it has the least error value. 
 
-## :minidisc: Exploración de datos :minidisc:
+## :minidisc: Data Exploration :minidisc:
 
-#### :scroll:Resampling y lectural del icv
+#### :scroll:Resampling and icv timeseries reading
 
-Inicialmente observamos que la serie de tiempo del índice de cartera vencida (icv) no está en la misma frecuencia temporal que las variables suministradas, puesto que el icv está mensual y las variables están trimestrales.
+Initially, can be seen that the ICV timeseries is not in the same frequency as the predictor variables (**located in ‘variables_macro_trimestral.xlsx’**), because the ICV is in monthly and predictors are in quarterly frequencies. 
 
-:exclamation: Por lo anterior, nos vemos obligados a tomar la primer decisión importante en este proyecto: **¿cual de las dos bases de datos modificar?** ya que lo más conveniente es que ambas series de tiempo tengan la misma frecuencia temporal:hourglass:. Para el caso de las variables, al ser datos macroeconómicos trimestrales, es más dificil convertirlas a mensuales, por lo tanto se decide realizar un **resampling** al icv, para convertirlo de mensual a trimestral. 
+In base of the previous description, it’s necessary to answer **which of the two databases modify?** because the most convenient is that both timeseries have the same time frequency :hourglass:. In this case ICV timeseries will be converted from monthly to quarterly frequency. 
 
 ![](figuras_y_tablas/figura_1.PNG)
 
