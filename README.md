@@ -24,67 +24,60 @@ In base of the previous description, it’s necessary to answer **which of the t
 
 ![](figuras_y_tablas/figura_1.PNG)
 
-**Figura 1** se carga la información sobre el icv en **indice_df** y luego se realiza el resampling o cambio de frecuencia temporal a trimestral, y se guarda en el dataframe **quarterly_resampled_indice_df**
+**Figure 1** Information about the ICV is saved into **indice_df** and then the resampling to quarterly is done, after is saved into the dataframe **quarterly_resampled_indice_df**
 
-**NOTA:exclamation::** inicialmente, se entrenarán los modelos con datos trimestrales, ya que así se tendrán más datos y esto mejora la robustez del modelo; luego, más adelante en este documento, se mostrará cómo *se calcula el valor proyectado del icv del sistema financiero a un año* 
+**NOTE:exclamation::** Initially, we will train the models with quarterly data, then, we will show how to project/predict the icv data yearly. 
 
-#### :book: Lectura y ajuste de variables 
+#### :book: Reading variables (Predictors)
 
-:green_book: A continuación se carga la base de datos de variables y se eliminan las 3 primeras filas y la última, esto con el fin de que puedan ser agrupadas correctamente con los datos del icv y formar un sólo dataframe y así explorar más fácil los datos. 
-**El objetivo es predecir cual será el icv promedio de los próximos 3 meses usando predictores o variables de la fecha actual.**
+:green_book: Following we read the predictors, and first we drop the first 3 rows and the last one so they match with the labels (icv)
 
 ![](figuras_y_tablas/Figura_2.PNG)
 
-**Figura 2**
+**Figure 2**
 
-:green_book: Luego, se deben unir los datos del ICV con las variables en un solo dataframe, además de agregar una columna numérica incremental para posteriores análisis, también se usa el comando **info()** para conocer los tipos de datos de las columnas y presencia de valores nulos
+:green_book: Then we concat the predictors and labels into a single dataframe, and we add an incremental numerical column so it represents the numerical period.
 
 ![](figuras_y_tablas/Figura_3.PNG)
 
-**Figura 3**
+**Figure 3**
 
-:green_book: De la figura 3 se puede inferir que hay 4 columnas con valores nulos que deben ser modificados posteriormente mediante imputación. 
+:green_book: From figure 3 we infer that there are 4 columns with null values which must be imputed
 
-#### :bar_chart:Gráfico de correlaciones entre variables:chart_with_upwards_trend:
+#### :bar_chart:Correlation between variables:chart_with_upwards_trend:
 
-:green_book: Usando el comando **sns.pairplot()** se genera el siguiente gráfico, el cual muestra en gráficos de disepersión, la correlación existente entre todas las variables, inclusive el icv. 
+:green_book: We generated the following plot so we see the correlations between variables, icv included 
 
 ![](figuras_y_tablas/Figura_4.png)
 
 **Figura 4** 
 
-:green_book: De la figura 4 se observa que la variable **icv_cartera_total** tiene una correlación positiva con la variable **Desempleo**, :bangbang:**pero su correlación con las demás variables no es fuerte**:bangbang:, hecho que se evidencia más adelante en este proyecto cuando se analicen las **relaciones y coeficientes del modelo de regresión lineal**, el cual es uno de los varios modelos posteriormente entrenados. 
+:green_book: We see **icv** has a positive correlation with **Desempleo** variable, :bangbang: **but the correlation of icv with the remaining variables isn’t so strong** :bangbang:
 
 
-## :memo:Imputación usando Regresión lineal:fountain_pen:
+## :memo:Imputation using Linear Regression:fountain_pen:
 
-:green_book: En la Figura 4 también se puede observar que las variables **PIB** e **IPC** tienen una alta correlación positiva con el tiempo (a medida que pasan los años, el valor del PIB e IPC aumenta); por esta fuerte correlación, se ha tomado la decisión de usar un modelo de Regresión Lineal para reemplazar los datos faltantes en estas dos columnas; para esto, se desarrolló la función **regression_imputer()** la cual hace el proceso de imputación automático. 
+:green_book: Also from figure 4 we see variables**PIB** and **IPC** have a strong correlation with time (the more time the higher the values), for this reason we chose to use Linear Regression to impute the null values, to do this, we developed the function **regression_imputer()** which makes the imputation automatically.
 
-:green_book: El código de la función se muestra a continuación, en dónda básicamente se entrena el modelo con los valores de la columna que no tengan valores nulos y luego de entrenado el modelo, éste se usa para predecir y sustituir los valores nulos por las predicciones realizadas por el modelo. 
 
 ![](figuras_y_tablas/Figura_5.png)
 
-**Figura 5**
+**Figure 5**
 
-:green_book: Y a continuación se enseña cómo, usando la función **regression_imputer()** y un ciclo for, se reemplazan los valores nulos de las columnas **IPC** y **PIB**.
+:green_book: Figure 6 shows how to use the **regression_imputer()** function
 
 ![](figuras_y_tablas/Figura_6.png)
 
-**Figura 6** 
+**Figure 6** 
 
-## :pencil2:Dividir datos entre 'entrenamiento' y 'testeo':scroll:
+## :pencil2:Training 'entrenamiento' & Test 'testeo' Data Split:scroll:
 
-:arrow_right:Esta etapa es crucial en el desarrollo de cualquier modelo predictivo de Machine Learning, ya que **NUNCA** debe ser usado el 100% de los datos disponibles, sino realizar una partición y utilizar una parte en entrenar el modelo y la otra en testearlo para evaluar éste cómo se comporta haciendo predicciones con datos desconocidos.
 
-**NOTA:exclamation::** **esta etapa es fundamental para garantizar la robustez estadística de cualquier modelo**
-
-**NOTA 2:exclamation::** **Existen métodos más sofisticados de entrenamiento de modelos (CROSS VALIDATION) y optimización de hiperparametros:exclamation: (GRIDSEARCHCV), pero debido a la poca cantidad de datos disponibles para entrenar los modelos en este proyecto, se ha optado por una única partición de datos 'entrenamiento' - 'testeo'**
-
-:arrow_right:A continuación, se procede a guardar en **x** la matriz de predictores de nuestros modelos y en **y** el vector de etiquetas o **'labels'**, en este caso el icv, y a partir de estas dos bases de datos, creamos las particiones de **'entrenamiento'** y **'testeo'** usando la función de sklearn **train_test_split()**.
+:arrow_right:Following we save in **x** the predictors matrix and in **y** the labels vector (icv), and from these two data arranges, we create the splits **’entrenamiento’** for model training and **testeo** for model testing, using sklearn function **train_test_split()**.
 
 ![](figuras_y_tablas/Figura_7.png)
 
-**Figura 7** 
+**Figure 7** 
 
 :arrow_right:Como último paso antes de entrenar modelos, se deben imputar las columnas 'Exportaciones' e 'Importaciones'; en este caso usaremos los valores del promedio de la columna y la función **SimpleImputer()** de **sklearn**, ver siguiente figura.
 
