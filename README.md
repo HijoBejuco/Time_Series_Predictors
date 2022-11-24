@@ -79,33 +79,36 @@ In base of the previous description, it’s necessary to answer **which of the t
 
 **Figure 7** 
 
-:arrow_right:Como último paso antes de entrenar modelos, se deben imputar las columnas 'Exportaciones' e 'Importaciones'; en este caso usaremos los valores del promedio de la columna y la función **SimpleImputer()** de **sklearn**, ver siguiente figura.
+:arrow_right:To impute the remaining columns with null values, we used the **SimpleImputer()** function
 
 ![](figuras_y_tablas/Figura_8.png)
 
 **Figura 8**
 
 
-## :brain:Entrenamiento y evaluación de modelos:robot:
+## :brain:Training and Model Evaluation:robot:
 
-:arrow_right:Se decidió, en esta fase, entrenar y evaluar el desempeño de tres modelos de regresión, los cuales son:
+:arrow_right:We decided to use three models:
+
     :bulb:RandomForestRegressor()
+
     :bulb:LinearRegression()
+
     :bulb:DecisionTreeRegressor()
 
-:arrow_right:El desempeño de cada modelo se calculó usando el **Error Medio Absoluto**, el cual indica **En promedio, las predicciones del modelo difieren 'tantas' veces del valor real**. A continuación se muestra un ciclo for, el cual itera sobre los 3 modelos y genera el error que cada uno produce evaluado en los datos de 'testeo'
+:arrow_right: We used mean absolute error to calculate the error of every model. Following we show a for loop which trains and tests the models, and then generates a table with the results. 
 
 ![](figuras_y_tablas/Figura_9.png)
 
-**Figura 9**
+**Figure 9**
 
-## :notebook:INTERPRETACIÓN COEFICIENTES DEL MODELO DE REGRESIÓN LINEAL:mag_right:
+## :notebook:LINEAR REGRESSION MODEL COEFFICIENTS INTERPRETATION:mag_right:
 
-:arrow_right:Pese a que el modelo de regresión lineal **no fue el modelo que mejor capacidad predictiva tuvo**, éste sin duda, es el modelo que mayor información nos entrega acerca del problema que queremos solucionar, puesto que **el valor de los coeficientes indica el grado de importancia que tiene cada variable a la hora de predecir la variable objetivo**, en este caso el icv. A continuación se muestra el desarrollo en código del modelo de regresión lineal, junto con los valores de los coeficientes de cada variable. 
+:arrow_right: Linear regression models provide important information and interpretations from the problem we are modelling, because the values of it’s coefficients indicate the weight each variable has in the final prediction of the model, so the greater the coefficient, the more important it is. Following we show the Linear Regressor construction and the values of its coefficients. 
 
 ![](figuras_y_tablas/Figura_Regresion_lineal.PNG)
 
-**Figura regresión lineal**
+**Linear Regression Figure**
 
 :arrow_right:De la figura anterior, se puede inferir que la variable que más influencia tiene a la hora de predecir el icv es **Desempleo**; inclusive, desde un punto de vista simplificado, se podría decir que **es la única variable que tiene un impacto considerable a la hora de predecir el icv**, ya que su coeficiente es **varios ordenes de magnitud** mayor que los coeficientes de las demás variables. 
 
